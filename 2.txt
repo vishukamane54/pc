@@ -1,0 +1,96 @@
+size1=int(input("\nEnter the size of SET A: "))
+size2=int(input("Enter the size of SET B: "))
+list1=[]
+list2=[]
+print("\n\n---SET A---")
+for i in range(size1):
+ elements=(int(input("Enter the elements of set A: ")))
+ list1.append(elements)
+ 
+print("SET A: ",list1)
+print("\n\n---SET B---")
+for j in range(size2):
+ elements=(int(input("Enter the elements of set B: ")))
+ list2.append(elements)
+print("SET B: ",list2)
+choice=0
+while(choice != 10):
+ print("\n\n----MENU----")
+ print("1.Addition")
+ print("2.Remove")
+ print("3.Contains")
+ print("4.Size")
+ print("5.Intersection")
+ print("6.Union")
+ print("7.Differance")
+ print("8.Subset")
+ print("9.Proper subset")
+ print("10.Exit")
+ choice=int(input("\nEnter the choice: "))
+ if choice == 1:
+ e=int(input("Enter the elments to be add: "))
+ list1.append(e)
+ print("New SET A: ",list1)
+ elif choice == 2:
+ e=int(input("Enter the elements to be remove: "))
+ if e in list1:
+ list1.remove(e)
+ print("New SET A:",list1)
+ else:
+ print("Element is not present...Can't remove")
+ elif choice == 3:
+ e=int(input("Enter the elements to be searched: "))
+ if e in list1:
+ print("Elements ",e," are present in SET A")
+ else:
+ print("Elements ",e," are not present in SET A")
+ elif choice == 4:
+ print("Size of the SET A: ",format(len(list1)))
+ elif choice == 5:
+ list3=[]
+ for element in list1:
+ if element in list2:
+ list3.append(element)
+ print("SET A: ",list1)
+ print("SET B: ",list2)
+ print("Intesection of SET A & SET B: ",list3)
+ elif choice == 6:
+ list3=[]
+ list3=list1.copy()
+ for element in list2:
+ if element not in list1:
+ list3.append(element)
+ print("SET A: ",list1)
+ print("SET B: ",list2)
+ print("Union of SET A & SET B: ",list3) 
+ elif choice == 7:
+ list3=[]
+ for element in list1:
+ if element not in list2:
+ list3.append(element)
+ print("SET A: ",list1)
+ print("SET B: ",list2)
+ print("SET A-SET B: ",list3)
+ elif choice == 8:
+ list3=[]
+ def sub():
+ flag=0
+ for e in list2:
+ if e in list1:
+ flag=1
+ else:
+ print("SET B is not the Subset of SET A")
+ return
+ if flag == 1:
+ print("SET B is the Subset of SET A")
+ sub() 
+ elif choice == 9:
+ if sorted(list1)==sorted(list2):
+ print("SET B is Proper Subset of SET A")
+ else:
+ print("SET B is not Proper Subset of SET A")
+ elif choice == 10:
+ print("\nThanks...End of the program!")
+ exit()
+ else:
+ print("\nPlease...Enter valid choice")

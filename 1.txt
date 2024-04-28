@@ -1,0 +1,112 @@
+def initializehashtable():
+ size=int(input("Enter the size: "))
+ hashtable=[[-1,'null']for i in range(size)]
+ print("hashtable of size",size,"is created")
+ print(" ")
+ print(" ")
+ return (size,hashtable)
+choice=1
+while(choice!=4):
+ print("1.linear probing")
+ print("2.double hashing")
+ print("3.exit")
+ choice=int(input("Enter the choice: "))
+ count=0
+ if choice==1:
+ size,hashtable=initializehashtable()
+ choice1=1
+ while(choice1!=4):
+ print("Menu for performing operation in linear probing")
+ print("1.insert")
+ print("2.search")
+ print("3.display")
+ print("4.back")
+ choice1=int(input("Enter your choice for linear probing: "))
+ if choice1==1:
+ if(count==size):
+ print("Hash table is full")
+ else:
+ number=int(input("Enter the number to be inserted: "))
+ name=input("Enter the name to be inserted: ")
+ hashvalue=number%size
+ while(hashtable[hashvalue][0]!=-1):
+ print("Collision has occured!!!")
+ print(" ")
+ hashvalue=(hashvalue+1)%size
+ hashtable[hashvalue][0]=number
+ hashtable[hashvalue][1]=name
+ count+=1
+ print("Data is succesfully inserted in the hashtable,total inserted records=",count)
+ print(" ")
+ print(" ")
+ if choice1==2:
+ number=int(input("Enter the number to be search: "))
+ hashvalue1=number%size 
+ comparison=0
+ while(hashtable[hashvalue][0]!=number and comparison<size):
+ hashvalue=(hashvalue+1)%size
+ comparison+=1
+ if comparison<size:
+ print("The number",number,"is found at location",hashvalue,"with comparison",comparison+1)
+ else: 
+ print("Number is not found with comparisons ",comparison+1)
+ 
+ 
+ if choice1==3:
+ for i in range(size):
+ print("Hashtable",i,end='->')
+ print(hashtable[i]) 
+ count=0
+ if choice==2:
+ size,hashtable=initializehashtable()
+ choice2=1
+ while(choice2!=4):
+ print("Menu for performing operation of Double Hashing")
+ print("1.insert")
+ print("2.search")
+ print("3.display")
+ print("4.back")
+ choice2=int(input("Enter your choice for double hashing: "))
+ if choice2==1:
+ if(count==size):
+ print("Hash table is full")
+ else:
+ number=int(input("Enter the number to be inserted: "))
+ name=input("Enter the name to be inserted: ")
+ hashvalue1=number%size
+ i=1
+ while(hashtable[hashvalue1][0] != -1):
+ print("Collision has occured...New hash value can be calculated using double hashing")
+ hashvalue1=number%size
+ prime=int(input("\nEnter the prime number less than the table size: "))
+ hashvalue2= (prime-(number%prime))
+ hashvalue3=(hashvalue1 + hashvalue2*i )%size
+ i=i+1
+ hashvalue1=hashvalue3
+ hashtable[hashvalue1][0] = number
+ hashtable[hashvalue1][1] = name
+ count+=1
+ print("Data is successfully inserted....Total number of entries are ",count)
+ print(" ")
+ print(" ")
+ if choice2==2:
+ number=int(input("Enter the number to be searched: "))
+ hashvalue1=number%size
+ comparision = 0
+ i = 1
+ while( hashtable[hashvalue][0] != number and comparision < size):
+ hashvalue1=number%size
+ hashvalue2=(prime-(number%prime))
+ hashvalue3=(hashvalue1 + i*hashvalue2)%size
+ hashvalue1=hashvalue3
+ comparision+=1
+ if comparision<size:
+ print("The number ",number,"is found at location ",hashvalue1,"with comparision ",comparision+1)
+ else:
+ print("The number is not found...with the comparision ",comparision+1)
+ if choice2==3:
+ for i in range(size):
+ print("Hash value ",i,end="->")
+ print(hashtable[i])
+ if choice==3:
+ exit()

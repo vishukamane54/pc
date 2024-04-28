@@ -1,0 +1,51 @@
+int main()
+{
+bst b,*root=NULL;
+int ch,n,key,value;
+while(1)
+{
+cout<<"\n---MENU___\n1.create BST\n2.Insert new node\n3.No. of nodes in the longest 
+lenght\n4.Minimum value\n5.Mirror\n6.Search\n7.Display(Inorder)\n8.Exit\n\nEnter the choice:";
+cin>>ch;
+switch(ch)
+{
+case 1:cout<<"\nEnter no. of nodes in the BST:";
+cin>>n;
+for(int i=0;i<n;i++){
+cout<<"Number= ";
+cin>>value;
+root=b.insert(root,value);
+}
+cout<<"\nInorder traversal: "<<endl;
+b.inorder(root);
+break;
+case 2:cout<<"\nNumber= :";
+cin>>value;
+root=b.insert(root,value);
+cout<<"\nInorder traversal: "<<endl;
+b.inorder(root);
+break;
+case 3:cout<<"\nNumbers of nodes in the longest path: "<<b.height(root);
+break;
+case 4:b.minvalue(root);
+break;
+case 5: cout<<"\nInorder traversal: ";
+b.inorder(root);
+b.mirror(root);
+cout<<"\nThe mirror of tree: ";
+b.inorder(root);
+break;
+case 6: cout<<"\nEnter the key to search: ";
+cin>>key;
+if(b.search(root,key)!=NULL)
+cout<<key<<" NOT FOUND"<<endl;
+else
+cout<<key<<" FOUND"<<endl;
+break;
+case 7:cout<<"\nInorder traversal: "<<endl;
+b.inorder(root);
+case 8:cout<<"\nThanks for using the program!";
+exit(0);
+}
+}return 0;
+}
